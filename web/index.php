@@ -1,7 +1,18 @@
+<?php
+    session_start();
+    if(isset($_SESSION['email'])){
+        header("location:dashboard.php");
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Store all your incomplete, favourite and save-for-later articles, blogs, news, podcasts and many more at one place.">
+<meta name="keywords" content="Article, Blog, Podcasts">
+<meta name="author" content="Trideep Barik">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./assets/img/logo.png">
 

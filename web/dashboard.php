@@ -71,7 +71,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"> <i class="fa fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="logout.php"> <i class="fa fa-sign-out-alt"></i></a>
       </li>
     </ul>
   </div>
@@ -89,7 +89,7 @@
                     <hr>
                     <form method="POST" action="addItem.php">
                         <div class="form-group">
-                            <label for="link">Blog Link</label>
+                            <label for="link">Link</label>
                             <input type="text" class="form-control" id="link" name="link" oninput="getdetails('link')" aria-describedby="emailHelp" placeholder="Enter the link" autocomplete="off">
                             <br>
                             <!-- <a class="btn btn-warning"> <i class="fas fa-rocket"></i> </a> -->
@@ -159,41 +159,53 @@
                 }
                 else{
                     $feed = "SELECT * FROM remindPosts WHERE email = '$email' and cat= '$cat' ORDER BY posttime DESC;";
-                }
-                
-                
+                }                
                 $feed_result = mysqli_query($con,$feed) or die(mysqli_error($con));
                 while($row = mysqli_fetch_assoc($feed_result)) {
+                    $color="";
+                    if($row['cat']=="Article"){
+                        $color="primary";
+                    }
+                    else if($row['cat']=="News"){
+                        $color="warning";
+                    }
+                    else if($row['cat']=="Podcast"){
+                        $color="info";
+                    }
+                    else if($row['cat']=="Other"){
+                        $color="danger";
+                    }
             ?>
                 <div class="col-md-12">
-                    <div class="card card-blog shadow-box shadow-hover border-0"><a href="blog-post.html">
+                    <div class="card card-blog <?="bg-".$color; ?> border-0 "><a href="blog-post.html">
                         <div class="card-body">
-                                <p class="card-title"><a href="<?=$row['link']; ?>" target="_blank"><?=$row['title']; ?> </a></p>
-                                <p class="card-text text-secondary"><?=$row['shortdesc']; ?></p>
+                                <p class="card-title "><a class="text-light" href="<?=$row['link']; ?>" target="_blank"><?=$row['title']; ?> </a></p>
+                                <hr>
+                                <p class="card-text text-light small"><?=$row['shortdesc']; ?></p>
                                 <p>
                                 <?php
                                     $tagslist = explode(',',$row['tags']);
                                     foreach ($tagslist as $tag)  {
 
                                 ?>
-                                <span class="badge badge-warning text-light"><?=$tag; ?></span>&nbsp;
+                                <span class="badge badge-light"><?=$tag; ?></span>&nbsp;
                                 <?php
                                     }
                                 ?>
                                 </p>
-                                <p class="bold small text-secondary my-0"><?=$row['posttime']; ?></p>
+                                <p class="bold small text-light my-0"><?=$row['posttime']; ?></p>
                         </div>
 
                         <div class="card-footer">
                             
-                            <?php echo "<a  href='?cat=".$cat."&type=delete&postid=".$row['postid']."' class='btn text-danger' ><i class='fas fa-trash'></i>&nbsp; Delete</a> &nbsp"; ?>
+                            <?php echo "<a  href='?cat=".$cat."&type=delete&postid=".$row['postid']."' class='btn text-white' ><i class='fas fa-trash text-white'></i>&nbsp; Delete</a> &nbsp"; ?>
                             
                             <?php 
                                     if($row['completed']==1){
-                                        echo "<a href='?cat=".$cat."&type=status&operation=incomplete&postid=".$row['postid']."' class='btn text-warning'><i class='fas fa-clipboard-check'></i>&nbsp; Mark as Incomplete</a>&nbsp&nbsp&nbsp";
+                                        echo "<a href='?cat=".$cat."&type=status&operation=incomplete&postid=".$row['postid']."' class='btn text-white'><i class='fas fa-clipboard-check text-white'></i>&nbsp; Mark as Incomplete</a>&nbsp&nbsp&nbsp";
                                     }
                                     else{
-                                        echo "<a href='?cat=".$cat."&type=status&operation=complete&postid=".$row['postid']."' class='btn text-success'><i class='fas fa-clipboard-check'></i>&nbsp; Mark as Complete</a>&nbsp&nbsp&nbsp";
+                                        echo "<a href='?cat=".$cat."&type=status&operation=complete&postid=".$row['postid']."' class='btn text-white'><i class='fas fa-clipboard-check text-white'></i>&nbsp; Mark as Complete</a>&nbsp&nbsp&nbsp";
                                     }
                             ?>
                         </div>

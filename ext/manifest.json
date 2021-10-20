@@ -1,17 +1,19 @@
 {
     "manifest_version":2,
-    "name":"Re: Mind",
+    "name": "Re: Mind",
     "version":"1.0",
-    "description":"An extension that stores all the articles and blogs at one place.",
+    "description":"Store all your incomplete, favourite and save-for-later articles, blogs, news, podcasts and many more at one place",
     "icons":{
-        "128":"./assets/logo.png",
-        "48":"./assets/logo.png",
-        "16":"./assets/logo.png"
+        "128":"./logo.png",
+        "48":"./logo.png",
+        "16":"./logo.png"
     },
     "browser_action":{
-        "default_icon":"./assets/logo.png",
-        "default_popup":"addblog.html"
+        "default_icon":"./logo.png",
+        "default_popup":"popup.html"
     },
-    "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net; object-src 'self'"
-
+    "permissions":[
+        "storage",
+        "tabs"
+    ]
 }

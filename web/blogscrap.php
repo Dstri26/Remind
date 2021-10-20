@@ -11,7 +11,7 @@
         $response['link']=$link;
     }
     catch (Exception $e) {
-        $response['success']=true;
+        $response['success']=false;
         $response['title']="Couldn't Fetch";
         $response['shortdesc'] = "Couldn't Fetch";
         $response['link']=$link;
