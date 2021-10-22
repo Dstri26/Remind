@@ -1,4 +1,9 @@
 body{
     width:360px;
     height:auto;
+    padding: 2rem;
+}
+.form-group input{
+    border: 0;
+    border-bottom: 2px solid black;
 }
