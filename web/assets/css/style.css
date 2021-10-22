@@ -163,3 +163,8 @@ section{
   .btn-group a{
     margin-right: 1rem;
   }
+  .dashboard{
+    background: url('https://wallpaperaccess.com/full/4220052.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+  }

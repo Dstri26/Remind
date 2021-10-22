@@ -51,8 +51,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./assets/img/logo.png">
 
 <title>Dashboard</title>
@@ -68,7 +71,7 @@
 
 <!-- -----------------------All other External Links Goes Here----------------------- -->
 </head>
-<body>
+<body class="dashboard">
 <!-- -----------------------All the Individual Sections Goes Here----------------------- -->
 
 
