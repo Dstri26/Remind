@@ -12,15 +12,22 @@
     <hr>
     <div id="notactive">
             <div class="form-group">
-              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email" required>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter you Password">
+              <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter you Password" required>
             </div>
-            <button class="btn btn-warning text-white" name="login" id="login">Login</button>
+            <p id="response" class="text-info">
+
+            </p>
+            <p>
+            <button class="btn btn-warning text-white" name="login" id="login">Login</button>&nbsp; or &nbsp;<button class="btn btn-outline-success border-0" id="register">Register Here</button>
+            </p>
     </div>
+
+
     <div id="active" style="display: none;">
-        <p class="lead">Welcome <span id="details"></span></p>
+        <p class="lead">Welcome <strong><span id="details"></span></strong>,</p>
         <button class="btn btn-success btn-sm text-white" name="furl">Save this page</button>
         <button class="btn btn-danger btn-sm text-white" name="logout" id="logout">Logout</button>
     </div>

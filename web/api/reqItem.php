@@ -10,50 +10,46 @@ include '../config.php';
 
 
 $email = "";
-$password = "";
-$loggedInUser = "";
+$response="";
+$link = "";
+$title = "";
+$shortdesc = "";
 $status = false;
-$response = "";
-$userId="";
-if(isset($_POST['email'])) {
-    $email = $_POST['email'];
+
+if(isset($_GET['email'])) {
+    $email = $_GET['email'];
 }
 
-if(isset($_POST['password'])) {
-    $password = md5($_POST['password']);
-}
-if($email != "" && $password != "") {
-    $getUser = "select * from remindUsers where email='$email' and pass='$password'";
-    $getUserRes = mysqli_query($con,$getUser) or die(mysqli_error($con));
+if($email != "" ) {
+    $getPost = "select * from remindPosts where email='$email' and completed=0 ORDER BY RAND() LIMIT 1;";
+    $getPostRes = mysqli_query($con,$getPost) or die(mysqli_error($con));
 
-    if(mysqli_num_rows($getUserRes) > 0) {
+    if(mysqli_num_rows($getPostRes) > 0) {
 
-        $getUserRow = mysqli_fetch_assoc($getUserRes);
-        $dbPassword = $getUserRow['pass'];
-        if($dbPassword == $password) {
-            $status = true;
-            $response = "Successfully logged in!";
-            $loggedInUser = $email;
-            $userId = $getUserRow['id'];
-
-        } else {
-            
-            $status = false;
-            $response = "Password is invalid";
-
-        }
+        $getPostRow = mysqli_fetch_assoc($getPostRes);
+        $response="Here's a random incomplete post.";
+        $link = $getPostRow['link'];
+        $title = $getPostRow['title'];
+        $shortdesc = $getPostRow['shortdesc'];
+        $status = true;
 
     } else {
 
+        $response = "Unable to fetch any posts";
+        $link = $getPostRow['link'];
+        $title = $getPostRow['title'];
+        $shortdesc = $getPostRow['shortdesc'];
         $status = false;
-        $response = "No such user exists!";
 
     }
 
 } else {
-    $status = false;
-    $response = "Please fill all the details!";
+        $response = "Unable to fetch any posts";
+        $link = "";
+        $title = "";
+        $shortdesc = "";
+        $status = false;
 }
 
-$responseArray = array("status" => $status, "response" => $response, "user" => $loggedInUser, "userId" => $userId);
+$responseArray = array("status" => $status, "response" => $response, "Post" => $loggedInPost, "PostId" => $PostId);
 echo json_encode($responseArray,JSON_PRETTY_PRINT);

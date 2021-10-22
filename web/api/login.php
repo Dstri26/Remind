@@ -35,6 +35,7 @@ if($email != "" && $password != "") {
             $response = "Successfully logged in!";
             $loggedInUser = $email;
             $userId = $getUserRow['id'];
+            $name = $getUserRow['name'];
 
         } else {
             
@@ -42,6 +43,7 @@ if($email != "" && $password != "") {
             $response = "Password is invalid";
             $loggedInUser = "None";
             $userId = "None";
+            $name = "None";
 
         }
 
@@ -51,15 +53,19 @@ if($email != "" && $password != "") {
         $response = "No such user exists!";
         $loggedInUser = "None";
         $userId = "None";
+        $name = "None";
 
     }
 
 } else {
     $status = false;
     $response = "Please fill all the details!";
+    $loggedInUser = "None";
+    $userId = "None";
+    $name = "None";
 }
 
-$responseArray = array("status" => $status, "response" => $response, "user" => $loggedInUser, "userId" => $userId);
+$responseArray = array("status" => $status, "response" => $response, "user" => $loggedInUser, "userId" => $userId, "name"=>$name);
 echo json_encode($responseArray,JSON_PRETTY_PRINT);
 
 ?>
