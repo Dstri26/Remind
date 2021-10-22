@@ -52,9 +52,20 @@ document.getElementById("login").addEventListener("click", () => {
     
 });
 
+document.getElementById("furl").addEventListener("click", () => {
+    chrome.tabs.query({ active: true, currentWindow: true}, function(tabs) {
+        var activetab = tabs[0];
+        var url="https://spectrumcet.com/remind/dashboard.php?url="+activetab.url;
+        window.open(url, "_blank");
+
+    });
+});
+
 document.getElementById("register").addEventListener("click", () => {
     window.open("https://spectrumcet.com/remind/", "_blank");
 });
+
+
 document.getElementById("postTitle").addEventListener("click", () => {
     window.open(document.getElementById('postTitle').href);
 });
