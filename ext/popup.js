@@ -1,6 +1,24 @@
 function chk() {
     chrome.storage.local.get(['remindActive','remindUser','remindName'], function(result) {
         if (result.remindActive==true) {
+
+            var postUrl = "https://spectrumcet.com/remind/api/reqItem.php?email="+result.remindUser;
+            let fetchPost = fetch(postUrl);
+            fetchPost.then(res => res.json())
+                    .then(d => {
+                        if (d.status==true) {
+                            document.getElementById('postCard').style.display="block";
+                        }
+                        else{
+                            document.getElementById('postCard').style.display="none";
+                        }
+                        document.getElementById('postRes').innerHTML=d.response;
+                        document.getElementById('postTitle').innerHTML=d.title;
+                        document.getElementById('postDesc').innerHTML=d.shortdesc;
+                        document.getElementById('postTitle').href=d.link;
+                    });
+
+
             document.getElementById('notactive').style.display="none";
             document.getElementById('active').style.display="block";
             document.getElementById('details').innerHTML=result.remindName;

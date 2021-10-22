@@ -35,21 +35,21 @@ if($email != "" ) {
 
     } else {
 
-        $response = "Unable to fetch any posts";
-        $link = $getPostRow['link'];
-        $title = $getPostRow['title'];
-        $shortdesc = $getPostRow['shortdesc'];
+        $response = "You are caught up.";
+        $link = "None";
+        $title = "None";
+        $shortdesc = "None";
         $status = false;
 
     }
 
 } else {
-        $response = "Unable to fetch any posts";
-        $link = "";
-        $title = "";
-        $shortdesc = "";
+        $response = "No incomplete post to fetch.";
+        $link = "None";
+        $title = "None";
+        $shortdesc = "None";
         $status = false;
 }
 
-$responseArray = array("status" => $status, "response" => $response, "Post" => $loggedInPost, "PostId" => $PostId);
+$responseArray = array("status" => $status, "response" => $response, "link" => $link, "shortdesc" => $shortdesc,"title"=>$title);
 echo json_encode($responseArray,JSON_PRETTY_PRINT);
