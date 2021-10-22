@@ -55,6 +55,9 @@ document.getElementById("login").addEventListener("click", () => {
 document.getElementById("register").addEventListener("click", () => {
     window.open("https://spectrumcet.com/remind/", "_blank");
 });
+document.getElementById("postTitle").addEventListener("click", () => {
+    window.open(document.getElementById('postTitle').href);
+});
 
 document.getElementById("logout").addEventListener("click", () => {
     console.log("You have been logged out");
