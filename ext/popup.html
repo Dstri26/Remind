@@ -4,19 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Re: Mind</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="notactive">
-            <h2>Login:<span id="status"></span> </h2>
-            <input type="text" name="email" id="email">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Login</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="pass" name="pass">
+            </div>
+            <input type="submit" class="btn btn-primary" name="logout" id="logout">Login</button>
+
+            <h2>Login:</h2>
+            <input type="text" name="" id="email">
             <input type="password" name="pass" id="pass">
             <input type="submit" name="login" id="login" value="Login">
     </div>
     <div id="active" style="display: none;">
         <h1>Welcome <span id="details"></span></h1>
-        <button type="submit" name="logout" id="logout">Logout</button>
+        <button type="submit" >Logout</button>
     </div>
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="popup.js"></script>
 </body>
 </html>

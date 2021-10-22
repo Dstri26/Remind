@@ -15,12 +15,12 @@ $loggedInUser = "";
 $status = false;
 $response = "";
 $userId="";
-if(isset($_POST['email'])) {
-    $email = $_POST['email'];
+if(isset($_GET['email'])) {
+    $email = $_GET['email'];
 }
 
-if(isset($_POST['password'])) {
-    $password = md5($_POST['password']);
+if(isset($_GET['password'])) {
+    $password = md5($_GET['password']);
 }
 if($email != "" && $password != "") {
     $getUser = "select * from remindUsers where email='$email' and pass='$password'";
