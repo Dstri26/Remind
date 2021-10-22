@@ -6,6 +6,16 @@
         $cat=$_GET['cat'];
     }
 
+    if(isset($_GET['url'])){
+        $_SESSION['url']=$_GET['url'];
+    }
+    else if(isset($_SESSION['url'])){
+        $_SESSION['url']=$_SESSION['url'];
+    }
+    else{
+        $_SESSION['url']="";
+    }
+
     if(!isset($_SESSION['email'])){
         header("location:index.php?msg=Register or Login First");
     }
@@ -90,7 +100,20 @@
                     <form method="POST" action="addItem.php">
                         <div class="form-group">
                             <label for="link">Link</label>
-                            <input type="text" class="form-control" id="link" name="link" oninput="getdetails('link')" aria-describedby="emailHelp" placeholder="Enter the link" autocomplete="off">
+                            <?php 
+                               // if(isset($_SESSION['url'])){
+                            ?>
+                            <input type="text" class="form-control" id="link" name="link" aria-describedby="emailHelp" placeholder="Enter the link" autocomplete="off" value="<?=$_SESSION['url']; ?>">
+                            <?php
+                                
+                               // }else{
+                              
+                            ?>
+                            <!-- <input type="text" class="form-control" id="link" name="link" oninput="getdetails('link')" aria-describedby="emailHelp" placeholder="Enter the link" autocomplete="off"> -->
+                            <?php
+                                      
+                                    //}
+                            ?>
                             <br>
                             <!-- <a class="btn btn-warning"> <i class="fas fa-rocket"></i> </a> -->
                         </div>
@@ -231,17 +254,21 @@
 <!-- -----------------------All the JS Links Goes Here----------------------- -->
 
 <script src="./assets/js/script.js"></script>
+<script>
+    window.onload = function() {
+        
+    };
+</script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-<script>
-    
+<script>    
     document.getElementById("myurl").value = document.location.origin;
-    function getdetails(i) {
+    function getdetails() {
 
-        var link=document.getElementById(i).value;
+        var link=document.getElementById("link").value;
         if(link!=''){
             console.log(link);
             $.ajax({
@@ -267,6 +294,14 @@
             
         }
     }
+
+    if (document.getElementById("link").value!="") {
+        getdetails();
+    }
+
+    document.getElementById("link").addEventListener("input", () => {
+        getdetails();
+    });
 
 </script>
 <!-- -----------------------All The JS Links Goes Here----------------------- -->
